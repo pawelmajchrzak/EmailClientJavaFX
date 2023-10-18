@@ -9,4 +9,5 @@ module TestJavaFX {
     opens com.test;
     opens com.test.view;
     opens com.test.controller;
+    opens com.test.model;
 }

@@ -56,4 +56,8 @@ public class EmailMessage {
     public Message getMessage() {
         return message;
     }
+
+    public void setRead(boolean read) {
+        isRead = read;
+    }
 }

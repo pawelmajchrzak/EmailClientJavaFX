@@ -22,6 +22,15 @@ public class EmailMessage {
     private boolean isRead;
     private Message message;
     private List<MimeBodyPart> attachmentList = new ArrayList<MimeBodyPart>();
+
+    public boolean isHasAttachments() {
+        return hasAttachments;
+    }
+
+    public List<MimeBodyPart> getAttachmentList() {
+        return attachmentList;
+    }
+
     private boolean hasAttachments = false;
     public EmailMessage(String subject, String sender, String recipient, int size, Date date, boolean isRead, Message message) {
         this.subject = new SimpleStringProperty(subject);

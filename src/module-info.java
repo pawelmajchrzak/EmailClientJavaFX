@@ -5,6 +5,7 @@ module TestJavaFX {
     requires javafx.web;
     requires activation;
     requires java.mail;
+    requires java.desktop;
 
     opens com.test;
     opens com.test.view;

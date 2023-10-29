@@ -24,7 +24,6 @@ public class Launcher extends Application {
         List<ValidAccount> validAccountList = persistenceAccess.loadFromPersistence();
         if (validAccountList.size() > 0) {
             viewFactory.showMainWindow();
-            //viewFactory.updateStyles(); //to dać w showMainWindow!
             for (ValidAccount validAccount: validAccountList) {
                 EmailAccount emailAccount = new EmailAccount(validAccount.getAddress(),validAccount.getPassword());
                 LoginService loginService = new LoginService(emailAccount, emailManager);
@@ -32,7 +31,6 @@ public class Launcher extends Application {
             }
         } else {
             viewFactory.showLoginWindow();
-            //viewFactory.updateStyles(); //to dać w showLoginWindow!
         }
     }
 

@@ -4,7 +4,6 @@ import com.test.EmailManager;
 import com.test.view.ViewFactory;
 
 public abstract class BaseController {
-    public String getFxmlName;
     protected EmailManager emailManager;
     protected ViewFactory viewFactory;
     private String fxmlName;

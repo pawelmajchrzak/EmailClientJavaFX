@@ -25,7 +25,7 @@ public class LoginService extends Service<EmailLoginResult> {
             }
         };
         try {
-            Thread.sleep(200);
+            Thread.sleep(20);
             Session session = Session.getInstance(emailAccount.getProperties(),authenticator);
             emailAccount.setSession(session);
             Store store = session.getStore("imaps");
@@ -42,10 +42,10 @@ public class LoginService extends Service<EmailLoginResult> {
             return EmailLoginResult.FAILED_BY_CREDENTIALS;
         } catch (MessagingException e) {
             e.printStackTrace();
-            return EmailLoginResult.FAILED_BY_UNXPECTED_ERROR;
+            return EmailLoginResult.FAILED_BY_UNEXPECTED_ERROR;
         } catch (Exception e) {
             e.printStackTrace();
-            return EmailLoginResult.FAILED_BY_UNXPECTED_ERROR;
+            return EmailLoginResult.FAILED_BY_UNEXPECTED_ERROR;
         }
         return EmailLoginResult.SUCCESS;
     }

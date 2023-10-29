@@ -1,6 +1,5 @@
 package com.test.controller.services;
 
-import com.test.EmailManager;
 import com.test.controller.EmailSendingResult;
 import com.test.model.EmailAccount;
 import javafx.concurrent.Service;
@@ -14,7 +13,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmailSenderService extends Service <EmailSendingResult> {
@@ -39,7 +37,7 @@ public class EmailSenderService extends Service <EmailSendingResult> {
             @Override
             protected EmailSendingResult call(){
                 try {
-                    // Creat the message:
+                    // Create the message:
                     MimeMessage mimeMessage = new MimeMessage(emailAccount.getSession());
                     mimeMessage.setFrom(emailAccount.getAddress());
                     mimeMessage.addRecipients(Message.RecipientType.TO,recipient);
@@ -51,7 +49,7 @@ public class EmailSenderService extends Service <EmailSendingResult> {
                     multipart.addBodyPart(messageBodyPart);
                     mimeMessage.setContent(multipart);
                     //adding attachments:
-                    if(attachments.size()<0){
+                    if(attachments.size()>0){
                         for (File file: attachments){
                             MimeBodyPart mimeBodyPart = new MimeBodyPart();
                             DataSource source = new FileDataSource(file.getAbsolutePath());
@@ -81,7 +79,6 @@ public class EmailSenderService extends Service <EmailSendingResult> {
                     e.printStackTrace();
                     return  EmailSendingResult.FAILED_BY_UNEXPECTED_ERROR;
                 }
-                //return null;
             }
         };
     }

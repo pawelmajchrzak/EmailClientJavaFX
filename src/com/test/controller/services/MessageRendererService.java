@@ -20,7 +20,7 @@ public class MessageRendererService extends Service {
 
     public MessageRendererService(WebEngine webEngine) {
         this.webEngine = webEngine;
-        stringBuffer = new StringBuffer();
+        this.stringBuffer = new StringBuffer();
         this.setOnSucceeded(event -> {
             displayMessage();
         });

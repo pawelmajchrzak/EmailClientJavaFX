@@ -52,16 +52,13 @@ public class LoginWindowController extends BaseController implements Initializab
                     case FAILED_BY_CREDENTIALS:
                         errorLabel.setText("invalid credentials!");
                         return;
-                    case FAILED_BY_UNXPECTED_ERROR:
+                    case FAILED_BY_UNEXPECTED_ERROR:
                         errorLabel.setText("unexpected error!");
                         return;
                     default:
-
+                        return;
                 }
             });
-
-
-
         }
     }
 

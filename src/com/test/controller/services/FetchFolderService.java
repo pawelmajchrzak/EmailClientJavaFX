@@ -12,7 +12,6 @@ import javax.mail.MessagingException;
 import javax.mail.Store;
 import javax.mail.event.MessageCountEvent;
 import javax.mail.event.MessageCountListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FetchFolderService extends Service<Void> {
@@ -78,7 +77,7 @@ public class FetchFolderService extends Service<Void> {
 
             @Override
             public void messagesRemoved(MessageCountEvent e) {
-                System.out.println("message added event!!!: " + e);
+                System.out.println("message removed event!!!: " + e);
             }
         });
     }

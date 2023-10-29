@@ -50,7 +50,7 @@ public class EmailDetailsController extends BaseController implements Initializa
         EmailMessage emailMessage = emailManager.getSelectedMessage();
         subjectLabel.setText(emailMessage.getSubject());
         senderLabel.setText(emailMessage.getSender());
-        loadAttachents(emailMessage);
+        loadAttachments(emailMessage);
 
         MessageRendererService messageRendererService = new MessageRendererService(webView.getEngine());
         messageRendererService.setEmailMessage(emailMessage);
@@ -58,14 +58,14 @@ public class EmailDetailsController extends BaseController implements Initializa
 
     }
 
-    private void loadAttachents(EmailMessage emailMessage){
+    private void loadAttachments(EmailMessage emailMessage){
         if (emailMessage.isHasAttachments()) {
             for (MimeBodyPart mimeBodyPart: emailMessage.getAttachmentList()){
                 try {
                     AttachmentButton button = new AttachmentButton(mimeBodyPart);
                     hBoxDownloads.getChildren().add(button);
-                } catch (MessagingException e) {
-                    throw new RuntimeException(e);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         } else {

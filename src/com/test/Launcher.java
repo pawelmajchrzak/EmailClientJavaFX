@@ -6,11 +6,7 @@ import com.test.controller.services.LoginService;
 import com.test.model.EmailAccount;
 import com.test.view.ViewFactory;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +20,11 @@ public class Launcher extends Application {
     private EmailManager emailManager = new EmailManager();
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         ViewFactory viewFactory = new ViewFactory(emailManager);
-        //viewFactory.showLoginWindow();
-        //viewFactory.updateStyles();
         List<ValidAccount> validAccountList = persistenceAccess.loadFromPersistence();
         if (validAccountList.size() > 0) {
             viewFactory.showMainWindow();
-            viewFactory.updateStyles();
+            //viewFactory.updateStyles(); //to dać w showMainWindow!
             for (ValidAccount validAccount: validAccountList) {
                 EmailAccount emailAccount = new EmailAccount(validAccount.getAddress(),validAccount.getPassword());
                 LoginService loginService = new LoginService(emailAccount, emailManager);
@@ -39,11 +32,9 @@ public class Launcher extends Application {
             }
         } else {
             viewFactory.showLoginWindow();
-            viewFactory.updateStyles();
+            //viewFactory.updateStyles(); //to dać w showLoginWindow!
         }
     }
-
-
 
     @Override
     public void stop() throws Exception {

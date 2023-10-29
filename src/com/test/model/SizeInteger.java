@@ -1,7 +1,5 @@
 package com.test.model;
 
-import javafx.scene.Parent;
-
 public class SizeInteger implements Comparable<SizeInteger>{
 
     private int size;
@@ -31,8 +29,6 @@ public class SizeInteger implements Comparable<SizeInteger>{
             return -1;
         } else {
             return 0;
-
         }
-
     }
 }

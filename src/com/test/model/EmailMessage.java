@@ -1,11 +1,7 @@
 package com.test.model;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.css.Size;
-import javafx.scene.Parent;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
@@ -18,20 +14,15 @@ public class EmailMessage {
     private SimpleStringProperty sender;
     private SimpleStringProperty recipient;
     private SimpleObjectProperty<SizeInteger> size;
-    private SimpleObjectProperty <Date> date;
+    private SimpleObjectProperty<Date> date;
     private boolean isRead;
     private Message message;
     private List<MimeBodyPart> attachmentList = new ArrayList<MimeBodyPart>();
 
-    public boolean isHasAttachments() {
-        return hasAttachments;
-    }
-
-    public List<MimeBodyPart> getAttachmentList() {
-        return attachmentList;
-    }
-
     private boolean hasAttachments = false;
+
+
+
     public EmailMessage(String subject, String sender, String recipient, int size, Date date, boolean isRead, Message message) {
         this.subject = new SimpleStringProperty(subject);
         this.sender = new SimpleStringProperty(sender);
@@ -41,7 +32,9 @@ public class EmailMessage {
         this.isRead = isRead;
         this.message = message;
     }
-
+    public boolean isHasAttachments() {
+        return hasAttachments;
+    }
     public String getSubject() {
         return this.subject.get();
     }
@@ -56,27 +49,23 @@ public class EmailMessage {
         return this.size.get();
     }
 
-    public Date getDate() {
-        return this.date.get();
-    }
-
     public boolean isRead() {
         return isRead;
     }
 
-    public void setMessage(Message message) {
-        this.message = message;
+    public Message getMessage() {
+        return this.message;
     }
 
-    public Message getMessage() {
-        return message;
+    public List<MimeBodyPart> getAttachmentList() {
+        return attachmentList;
     }
 
     public void setRead(boolean read) {
         isRead = read;
     }
 
-    public void addAttachment(MimeBodyPart mbp) throws MessagingException {
+    public void addAttachment(MimeBodyPart mbp){
         hasAttachments = true;
         attachmentList.add(mbp);
         try {
@@ -86,4 +75,7 @@ public class EmailMessage {
         }
 
     }
+
+
+
 }

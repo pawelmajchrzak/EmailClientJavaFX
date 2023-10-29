@@ -54,6 +54,7 @@ public class EmailAccount {
         properties = new Properties();
         properties.put("incomingHost", "ssl0.ovh.net");
         properties.put("mail.store.protocol","imaps");
+        properties.put("mail.transport.protocol", "smtps");
         properties.put("mail.smtps.host","ssl0.ovh.net");
         properties.put("mail.smtps.auth","true");
         properties.put("outgoingHost","ssl0.ovh.net");

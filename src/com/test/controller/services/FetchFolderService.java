@@ -2,10 +2,12 @@ package com.test.controller.services;
 
 
 import com.test.model.EmailTreeItem;
+import com.test.view.IconResolver;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
 import javax.mail.Folder;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Store;
 import javax.mail.event.MessageCountEvent;
@@ -19,6 +21,7 @@ public class FetchFolderService extends Service<Void> {
     private EmailTreeItem<String> foldersRoot;
 
     private List<Folder> folderList;
+    private IconResolver iconResolver = new IconResolver();
 
     public FetchFolderService(Store store, EmailTreeItem<String> foldersRoot, List<Folder> folderList) {
         this.store = store;
@@ -46,6 +49,7 @@ public class FetchFolderService extends Service<Void> {
         for(Folder folder: folders) {
             folderList.add(folder);
             EmailTreeItem<String> emailTreeItem = new EmailTreeItem<String>(folder.getName());
+            emailTreeItem.setGraphic(iconResolver.getIconForFolder(folder.getName()));
             foldersRoot.getChildren().add((emailTreeItem));
             foldersRoot.setExpanded(true);
             fetchMessegesOnFolder(folder, emailTreeItem);
@@ -61,7 +65,15 @@ public class FetchFolderService extends Service<Void> {
         folder.addMessageCountListener(new MessageCountListener() {
             @Override
             public void messagesAdded(MessageCountEvent e) {
-                System.out.println("message added event!!!: " + e);
+                for (int i = 0; i < e.getMessages().length; i++) {
+                    try {
+                        Message message = folder.getMessage(folder.getMessageCount() - i);
+                        emailTreeItem.addEmailToTop(message);
+                    } catch (MessagingException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                }
             }
 
             @Override

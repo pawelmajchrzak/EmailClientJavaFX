@@ -1,10 +1,7 @@
 package com.test.view;
 
 import com.test.EmailManager;
-import com.test.controller.BaseController;
-import com.test.controller.LoginWindowController;
-import com.test.controller.MainWindowController;
-import com.test.controller.OptionsWindowController;
+import com.test.controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -67,6 +64,18 @@ public class ViewFactory {
         BaseController controller = new OptionsWindowController(emailManager, this, "OptionsWindow.fxml");
         initializeStage(controller);
     }
+
+    public void showEmailDetailsWindow() {
+        BaseController controller = new EmailDetailsController(emailManager,this, "EmailDetailsWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showComposeMessageWindow() {
+        System.out.println("ComposeMessage called");
+        BaseController controller = new ComposeMessageController(emailManager, this, "ComposeMessageWindow.fxml");
+        initializeStage(controller);
+    }
+
 
     private void initializeStage (BaseController baseController) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(baseController.getFxmlName()));
